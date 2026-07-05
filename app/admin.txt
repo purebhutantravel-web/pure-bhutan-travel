@@ -1,0 +1,57 @@
+"use server";
+
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+
+function cleanText(value: FormDataEntryValue | null) {
+  return String(value || "").trim();
+}
+
+export async function loginAdmin(formData: FormData) {
+  const email = cleanText(formData.get("email"));
+  const password = cleanText(formData.get("password"));
+
+  if (!email || !password) {
+    redirect("/admin/login?status=missing");
+  }
+
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    redirect("/admin/login?status=error");
+  }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/admin/login?status=error");
+  }
+
+  const { data: admin } = await supabase
+    .from("admin_users")
+    .select("id")
+    .eq("id", user.id)
+    .eq("is_active", true)
+    .maybeSingle();
+
+  if (!admin) {
+    await supabase.auth.signOut();
+    redirect("/admin/login?status=unauthorized");
+  }
+
+  redirect("/admin");
+}
+
+export async function logoutAdmin() {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+
+  redirect("/admin/login?status=logged-out");
+}
