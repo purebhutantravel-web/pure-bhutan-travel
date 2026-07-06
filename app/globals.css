@@ -1773,3 +1773,131 @@ img.large-image-placeholder {
   }
 }
 
+.mobile-menu-button {
+  display: none;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: #4b2e83;
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(75, 46, 131, 0.22);
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background:
+    radial-gradient(circle at 80% 8%, rgba(220, 207, 237, 0.95), transparent 34%),
+    linear-gradient(135deg, #fffaf1 0%, #f6efff 48%, #dccfed 100%);
+  padding: 22px;
+}
+
+.mobile-menu-panel {
+  min-height: calc(100vh - 44px);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at top right, rgba(220, 207, 237, 0.22), transparent 32%),
+    #4b2e83;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 28px 80px rgba(75, 46, 131, 0.28);
+}
+
+.mobile-menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mobile-menu-panel .travel-brand strong {
+  color: white;
+}
+
+.mobile-menu-panel .travel-brand small {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.mobile-menu-panel .travel-brand-mark {
+  background: white;
+  color: #4b2e83;
+}
+
+.mobile-menu-close {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mobile-menu-links {
+  display: grid;
+  gap: 12px;
+  margin-top: 46px;
+}
+
+.mobile-menu-links a {
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  padding: 0 18px;
+  border-radius: 22px;
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(220, 207, 237, 0.22);
+}
+
+.mobile-menu-links a:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.mobile-menu-cta {
+  margin-top: 24px;
+  min-height: 58px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: #4b2e83;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.mobile-menu-note {
+  margin-top: auto;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .mobile-menu-button {
+    display: grid;
+    place-items: center;
+  }
+
+  .travel-navbar {
+    min-height: 72px;
+  }
+
+  .travel-brand-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 15px;
+  }
+}
+
